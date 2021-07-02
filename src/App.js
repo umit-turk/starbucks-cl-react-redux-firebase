@@ -20,7 +20,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <h1>STARBUCKS</h1>
     </div>
   );
 }

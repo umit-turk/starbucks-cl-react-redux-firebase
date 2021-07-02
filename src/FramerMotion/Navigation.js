@@ -4,6 +4,11 @@ import { MenuItem } from "./MenuItem";
 import { useState } from "react";
 import FindAStore from "./FindAStore";
 import MenuLink from "./MenuLink";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import SignInButton from "../components/SignInButton/SignInButton";
+import SignUpButton from "../components/SignUpButton/SignUpButton";
+import LogoutButton from "../components/LogoutButton/LogoutButton";
 
 const variants = {
   open: {
@@ -31,7 +36,9 @@ const variants2 = {
 };
 
 export const Navigation = ({ toggle }) => {
+
     const [showMenuCategories, setShowMenuCategories] = useState(false)
+    const user = useSelector(selectUser)
   return (
     <>
     {showMenuCategories ? (
@@ -64,7 +71,14 @@ export const Navigation = ({ toggle }) => {
             <MenuLink link="Gift Cards" />
             <motion.hr variants={variants2} />
             <motion.div className="navigation__buttons" variants={variants2}> 
-            {/* WE NEED USER HERE */}
+            {!user ? (
+              <>
+              <SignInButton/>
+              <SignUpButton />
+              </>
+            ): (
+              <LogoutButton/>
+            )}
             </motion.div>
             <motion.div variants={variants2}>
                 <FindAStore />

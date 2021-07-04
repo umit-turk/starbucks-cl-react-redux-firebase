@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import SignupScreen from "./screens/SignupScreen";
+import MenuScreen from "./screens/MenuScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -54,6 +55,17 @@ function App() {
           </Route>
           <Route exact path="/account/create">
             {user ? <Redirect to="/menu" /> : <SignupScreen />}
+          </Route>
+
+          <Route exact path="/menu">
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <MenuScreen />
+              </>
+            )}
           </Route>
         </Switch>
       </Router>

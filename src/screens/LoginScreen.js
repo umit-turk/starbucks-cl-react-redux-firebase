@@ -14,6 +14,8 @@ import FormSubmit from "../Form/FormSubmit";
 function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
+
+  //firebase auth
   const onSubmit = ({ email, password }) => {};
 
   return (
@@ -35,7 +37,7 @@ function LoginScreen() {
             <TextField
               name="email"
               label="Email Address"
-              type={passwordShown ? "text" : "password"}
+              type="email"
               InputLabelProps={{ style: { color: "rgba(0,0,0,0.56)" } }}
               InputProps={{ style: { fontWeight: "800" } }}
               className="loginScreen__input"
@@ -56,8 +58,8 @@ function LoginScreen() {
           <div className="loginScreen__inputContainer">
             <TextField
               label="Password"
+              type={passwordShown ? "text" : "password"}
               name="password"
-              type="password"
               InputLabelProps={{ style: { color: "rgba(0,0,0,0.56)" } }}
               InputProps={{ style: { fontWeight: "800" } }}
               className="loginScreen__input"

@@ -1,0 +1,31 @@
+.footerSecondary {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    width: 100%;
+    padding: 30px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footerSecondary__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footerSecondary__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+}
+
+.footerSecondary__left > a {
+     font-size: large;
+}
+
+.footerSecondary__right {
+    display: flex;
+    gap: 15px;
+}

@@ -16,6 +16,7 @@ import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import SignupScreen from "./screens/SignupScreen";
 import MenuScreen from "./screens/MenuScreen";
+import FeaturedScreen from "./screens/FeaturedScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -66,6 +67,14 @@ function App() {
                 <MenuScreen />
               </>
             )}
+          </Route>
+
+          <Route exact path="/menu/featured">
+            <Header />
+            <FeaturedScreen />
+            <Fade>
+              <Footer />
+            </Fade>
           </Route>
         </Switch>
       </Router>

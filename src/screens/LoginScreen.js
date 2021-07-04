@@ -10,18 +10,35 @@ import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined"
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import FooterSecondary from "../components/Footer/FooterSecondary";
 import FormSubmit from "../Form/FormSubmit";
+import { auth } from "../firebase";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useDispatch();
 
   //firebase auth
-  const onSubmit = ({ email, password }) => {};
+  const onSubmit = ({ email, password }) => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+          })
+        );
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="loginScreen">
       <div className="loginScreen__left">
-        <Link>
+        <Link to="/">
           <img
             src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
             alt="logo"
@@ -109,7 +126,7 @@ function LoginScreen() {
             </p>
           </div>
         </div>
-        <FooterSecondary paddingLeft={30} flexDirection="column"/>
+        <FooterSecondary paddingLeft={30} flexDirection="column" />
       </div>
     </div>
   );
